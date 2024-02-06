@@ -8,12 +8,14 @@ on:
 jobs:
   pytest:
     uses: cottsay/colcon-ci/.github/workflows/pytest.yaml@main
+    outputs:
+      matrix: ${{ matrix }}
     with:
       codecov: true
 
   bootstrap:
-    needs: [setup]
-    strategy: ${{ jobs.pytest.strategy }}
+    needs: [pytest]
+    strategy: ${{ needs.pytest.strategy }}
     runs-on: ${{matrix.os}}
 
     steps:
