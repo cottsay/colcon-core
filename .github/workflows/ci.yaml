@@ -8,8 +8,6 @@ on:
 jobs:
   pytest:
     uses: cottsay/colcon-ci/.github/workflows/pytest.yaml@main
-    outputs:
-      matrix: ${{ matrix }}
     with:
       codecov: true
 
