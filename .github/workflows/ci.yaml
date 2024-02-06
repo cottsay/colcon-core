@@ -13,7 +13,8 @@ jobs:
 
   bootstrap:
     needs: [pytest]
-    strategy: ${{ needs.pytest.strategy }}
+    strategy:
+      matrix:  ${{ fromJSON(needs.pytest.outputs.matrix) }}
     runs-on: ${{matrix.os}}
 
     steps:
